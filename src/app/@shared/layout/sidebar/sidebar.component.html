@@ -1,0 +1,43 @@
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul
+          class="nav nav-pills nav-sidebar flex-column text-sm nav-flat nav-legacy nav-compact nav-child-indent"
+          data-widget="treeview"
+          role="menu"
+          data-accordion="false"
+        >
+          <li class="nav-header">MENU</li>
+          <ng-container *ngFor="let menu of menus">
+            <li class="nav-item" [hidden]="!menu.mostrar">
+              <a [routerLink]="[menu.url]" routerLinkActive="bg-green" class="nav-link">
+                <i [class]="menu.icone"></i>
+                <p>
+                  {{ menu.nome }}
+                  <i class="right fas fa-angle-left" [hidden]="menu.submenus.length === 0"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview" [hidden]="menu.submenus.length === 0">
+                <ng-container *ngFor="let submenu of menu.submenus">
+                  <li
+                    class="nav-item"
+                    [hidden]="!submenu.mostrar"
+                    [class.Inicio]="menu.nome === 'Inicio'"
+                  >
+                    <a routerLinkActive="bg-green" [routerLink]="[submenu.url]" class="nav-link">
+                      <i [class]="submenu.icone"></i>
+                      <p>{{ submenu.nome }}</p>
+                    </a>
+                  </li></ng-container
+                >
+              </ul>
+            </li>
+          </ng-container>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+
+  
